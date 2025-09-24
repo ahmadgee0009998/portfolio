@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        :root {
+            --bg: #f4f4f4;
+            --text: #222;
+            --card: #fff;
+            --correct: #4caf50;
+            --wrong: #f44336;
+        }
+
+        body.dark {
+            --bg: #121212;
+            --text: #f4f4f4;
+            --card: #1e1e1e;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            transition: 0.3s;
+        }
+
+        .quiz {
+            width: 400px;
+            background: var(--card);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .question {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .answers button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #ddd;
+            transition: 0.2s;
+        }
+
+        .answers button:hover {
+            background: #ccc;
+        }
+
+        .answers button.correct {
+            background: var(--correct) !important;
+            color: white;
+        }
+
+        .answers button.wrong {
+            background: var(--wrong) !important;
+            color: white;
+        }
+
+        .timer {
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .progress {
+            width: 100%;
+            height: 8px;
+            background: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: #2196f3;
+            transition: width 0.3s;
+        }
+
+        .score,
+        .theme-toggle,
+        .restart {
+            margin-top: 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quiz">
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="timer" id="timer">Time: 15s</div>
+        <div class="question" id="question">Question text</div>
+        <div class="answers" id="answers"></div>
+        <div class="score" id="score"></div>
+        <div class="restart" id="restart" style="display:none;">🔄 Restart Quiz</div>
+        <div class="theme-toggle" id="themeToggle">🌙 Toggle Theme</div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                q: "What is the capital of France?",
+                options: ["Berlin", "Paris", "Madrid", "Rome"],
+                answer: "Paris"
+            },
+            {
+                q: "Who developed JavaScript?",
+                options: ["Brendan Eich", "Bill Gates", "Linus Torvalds", "Mark Zuckerberg"],
+                answer: "Brendan Eich"
+            },
+            {
+                q: "What does CSS stand for?",
+                options: ["Cascading Style Sheets", "Colorful Style System", "Computer Styled Syntax", "Code Style Structure"],
+                answer: "Cascading Style Sheets"
+            }
+        ];
+
+        let currentQ = 0, score = 0, timer, timeLeft = 15;
+
+        const questionEl = document.getElementById("question");
+        const answersEl = document.getElementById("answers");
+        const timerEl = document.getElementById("timer");
+        const scoreEl = document.getElementById("score");
+        const progressBar = document.getElementById("progressBar");
+        const restartBtn = document.getElementById("restart");
+        const themeToggle = document.getElementById("themeToggle");
+
+        function shuffle(arr) { return arr.sort(() => Math.random() - 0.5); }
+
+        function startQuiz() {
+            currentQ = 0; score = 0;
+            shuffle(questions);
+            questions.forEach(q => shuffle(q.options));
+            showQuestion();
+            scoreEl.textContent = "";
+            restartBtn.style.display = "none";
+        }
+
+        function showQuestion() {
+            clearInterval(timer);
+            timeLeft = 15; timerEl.textContent = `Time: ${timeLeft}s`;
+            timer = setInterval(() => {
+                timeLeft--; timerEl.textContent = `Time: ${timeLeft}s`;
+                if (timeLeft <= 0) { clearInterval(timer); nextQuestion(); }
+            }, 1000);
+
+            let q = questions[currentQ];
+            questionEl.textContent = q.q;
+            answersEl.innerHTML = "";
+            q.options.forEach(opt => {
+                let btn = document.createElement("button");
+                btn.textContent = opt;
+                btn.onclick = () => selectAnswer(btn, q.answer);
+                answersEl.appendChild(btn);
+            });
+            progressBar.style.width = `${(currentQ / questions.length) * 100}%`;
+        }
+
+        function selectAnswer(btn, correct) {
+            clearInterval(timer);
+            [...answersEl.children].forEach(b => {
+                b.disabled = true;
+                if (b.textContent === correct) b.classList.add("correct");
+                else if (b === btn) b.classList.add("wrong");
+            });
+            if (btn.textContent === correct) score++;
+            setTimeout(nextQuestion, 1000);
+        }
+
+        function nextQuestion() {
+            currentQ++;
+            if (currentQ < questions.length) showQuestion();
+            else endQuiz();
+        }
+
+        function endQuiz() {
+            questionEl.textContent = "Quiz Finished!";
+            answersEl.innerHTML = "";
+            progressBar.style.width = "100%";
+            scoreEl.textContent = `Score: ${score}/${questions.length} (${Math.round((score / questions.length) * 100)}%)`;
+
+            let high = localStorage.getItem("highScore") || 0;
+            if (score > high) { localStorage.setItem("highScore", score); high = score; }
+            scoreEl.textContent += ` | High Score: ${high}`;
+            restartBtn.style.display = "block";
+        }
+
+        // restart
+        restartBtn.onclick = startQuiz;
+
+        // theme
+        if (localStorage.getItem("theme") === "dark") document.body.classList.add("dark");
+        themeToggle.onclick = () => {
+            document.body.classList.toggle("dark");
+            localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+        };
+
+        startQuiz();
+    </script>
+</body>
+
+</html>

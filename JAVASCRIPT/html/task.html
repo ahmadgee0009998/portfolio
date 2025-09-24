@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker with Charts</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: var(--bg);
+      color: var(--text);
+      transition: 0.3s;
+    }
+
+    :root {
+      --bg: #fff;
+      --text: #000;
+      --card: #f4f4f4;
+    }
+
+    body.dark {
+      --bg: #1e1e1e;
+      --text: #f5f5f5;
+      --card: #333;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .form {
+      background: var(--card);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    input, select, button {
+      padding: 8px;
+      margin: 5px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+
+    table, th, td {
+      border: 1px solid var(--text);
+      padding: 8px;
+      text-align: center;
+    }
+
+    .charts {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .chart-container {
+      flex: 1;
+      min-width: 300px;
+      background: var(--card);
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .controls {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Expense Tracker with Charts</h1>
+
+    <!-- Form to add expense -->
+    <div class="form">
+      <input type="text" id="desc" placeholder="Description">
+      <input type="number" id="amount" placeholder="Amount">
+      <select id="category">
+        <option>Food</option>
+        <option>Transport</option>
+        <option>Shopping</option>
+        <option>Other</option>
+      </select>
+      <input type="date" id="date">
+      <button onclick="addExpense()">Add Expense</button>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <input type="text" id="search" placeholder="Search..." onkeyup="renderTable()">
+      <button onclick="exportCSV()">Export CSV</button>
+      <button onclick="toggleTheme()">Toggle Dark/Light</button>
+    </div>
+
+    <!-- Expense History -->
+    <table>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Category</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="expenseTable"></tbody>
+    </table>
+
+    <!-- Totals -->
+    <h3 id="totals">Total: $0</h3>
+    <p id="summary"></p>
+
+    <!-- Charts -->
+    <div class="charts">
+      <div class="chart-container">
+        <canvas id="pieChart"></canvas>
+      </div>
+      <div class="chart-container">
+        <canvas id="barChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+    let pieChart, barChart;
+
+    function addExpense() {
+      const desc = document.getElementById("desc").value;
+      const amount = parseFloat(document.getElementById("amount").value);
+      const category = document.getElementById("category").value;
+      const date = document.getElementById("date").value || new Date().toISOString().split("T")[0];
+
+      if (!desc || !amount) return alert("Please enter valid data!");
+
+      expenses.push({ desc, amount, category, date });
+      localStorage.setItem("expenses", JSON.stringify(expenses));
+
+      document.getElementById("desc").value = "";
+      document.getElementById("amount").value = "";
+      renderTable();
+      updateCharts();
+    }
+
+    function deleteExpense(index) {
+      expenses.splice(index, 1);
+      localStorage.setItem("expenses", JSON.stringify(expenses));
+      renderTable();
+      updateCharts();
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById("expenseTable");
+      const search = document.getElementById("search").value.toLowerCase();
+      tbody.innerHTML = "";
+
+      let total = 0;
+      let categoryTotals = {};
+
+      expenses
+        .filter(e => e.desc.toLowerCase().includes(search))
+        .forEach((e, i) => {
+          total += e.amount;
+          categoryTotals[e.category] = (categoryTotals[e.category] || 0) + e.amount;
+
+          tbody.innerHTML += `
+            <tr>
+              <td>${e.desc}</td>
+              <td>$${e.amount}</td>
+              <td>${e.category}</td>
+              <td>${e.date}</td>
+              <td><button onclick="deleteExpense(${i})">Delete</button></td>
+            </tr>`;
+        });
+
+      document.getElementById("totals").innerText = "Total: $" + total;
+      document.getElementById("summary").innerText =
+        Object.entries(categoryTotals).map(([cat, val]) => `${cat}: $${val}`).join(", ");
+    }
+
+    function updateCharts() {
+      const categoryTotals = {};
+      const dailyTotals = {};
+
+      expenses.forEach(e => {
+        categoryTotals[e.category] = (categoryTotals[e.category] || 0) + e.amount;
+        dailyTotals[e.date] = (dailyTotals[e.date] || 0) + e.amount;
+      });
+
+      // Pie Chart
+      if (pieChart) pieChart.destroy();
+      pieChart = new Chart(document.getElementById("pieChart"), {
+        type: "pie",
+        data: {
+          labels: Object.keys(categoryTotals),
+          datasets: [{ data: Object.values(categoryTotals), backgroundColor: ["#ff6384","#36a2eb","#ffce56","#4bc0c0"] }]
+        }
+      });
+
+      // Bar Chart
+      if (barChart) barChart.destroy();
+      barChart = new Chart(document.getElementById("barChart"), {
+        type: "bar",
+        data: {
+          labels: Object.keys(dailyTotals),
+          datasets: [{ label: "Daily Spending", data: Object.values(dailyTotals), backgroundColor: "#36a2eb" }]
+        }
+      });
+    }
+
+    function exportCSV() {
+      let csv = "Description,Amount,Category,Date\n";
+      expenses.forEach(e => {
+        csv += `${e.desc},${e.amount},${e.category},${e.date}\n`;
+      });
+
+      const blob = new Blob([csv], { type: "text/csv" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "expenses.csv";
+      a.click();
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+    }
+
+    // Init
+    renderTable();
+    updateCharts();
+  </script>
+</body>
+</html>

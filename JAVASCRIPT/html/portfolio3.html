@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, red, blue,green);
+      color:black;
+      line-height: 1.6;
+      max-width: auto;
+      margin: auto;
+      padding: 20px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(135deg, purple, orange,green);
+      color:black ;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      border-radius: 12px;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+    }
+
+    nav a {
+      color: black;
+      margin:15px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.5s;
+    }
+
+    nav a:hover {
+      background: linear-gradient(135deg, purple, orange,green);
+      color: black;
+      padding: 8px 15px;
+      border-radius: 20px;
+    }
+
+    section {
+    padding: 60px;
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: black;
+      font-size: 2rem;
+    }
+
+    #about {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      background: linear-gradient(135deg, purple, orange,green);
+      border-radius: 15px;
+      padding: 30px;
+    }
+
+    #about .hero {
+      flex: 1 1 400px;
+    }
+
+    #about .hero p {
+      margin-top: 15px;
+      font-size: 1.1rem;
+    }
+
+    #about img {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      border: 2px solid black;
+      border-radius: 50%;
+    }
+
+    .cards {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background: linear-gradient(135deg, purple, orange,green);
+      padding: 20px;
+      width: 260px;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.5s,;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: black;
+    }
+
+    #contact p {
+      text-align: center;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, purple, orange,green);
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    #contact strong {
+      color: black;
+    }
+
+    footer {
+      background: linear-gradient(135deg, purple, orange,green);
+      color: black;
+      text-align: center;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+    
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Muhammad Ahmad</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <div class="hero">
+      <h2>About Me</h2>
+      <p>Hello! My name is Muhammad Ahmad. I'm a web developer passionate about creating beautiful and functional
+        websites. I love coding and learning new technologies.</p>
+    </div>
+    <img src="WhatsApp Image 2025-09-09 at 02.49.50_414f36c1.jpg"
+         alt="Profile picture of Muhammad Ahmad">
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Project One</h3>
+        <p>I created a chessboard using HTML & CSS.</p>
+      </div>
+      <div class="card">
+        <h3>Project Two</h3>
+        <p>I developed a simple webpage layout.</p>
+      </div>
+      <div class="card">
+        <h3>Project Three</h3>
+        <p>I designed a small responsive portfolio.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <h2>Services</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Web Development</h3>
+        <p>I build responsive and modern websites using HTML, CSS, and JavaScript.</p>
+      </div>
+      <div class="card">
+        <h3>UI/UX Design</h3>
+        <p>I create clean, user-friendly interfaces with a focus on great user experience.</p>
+      </div>
+      <div class="card">
+        <h3>Freelancing</h3>
+        <p>I offer freelance services for small businesses and personal projects.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>You can reach me at <strong>ahmadgee0009998@gmail.com</strong></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 My Portfolio. All rights reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style> 
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+.dashboard { 
+    display: grid;
+    height: 100vh;
+    gap: 10px;
+    padding: 10px;
+grid-template-columns: 200px 1fr 150px;
+grid-template-rows: 80px 1fr;
+}
+.header { 
+    background-color: lightgreen;
+grid-column: 1/4;
+padding: 1rem;
+border-radius: 8px;
+}
+.sidebar {
+background-color: lightblue;
+color:brown;
+padding: 1rem;
+border-radius: 8px;
+}
+.contents {
+background-color: lightcoral;
+color:brown;
+padding: 1rem;
+border-radius: 8px;
+} 
+.ads {
+background-color: purple;
+color:lightseagreen;
+padding: 1rem;
+border-radius: 8px;
+
+}
+
+    </style>
+</head>
+<body>
+    <div class="dashboard"> 
+        <div class="header">header</div> 
+        <div class="contents">contents</div>
+        <div class="ads">ads</div>
+        <div class="sidebar">sidebar</div>
+    </div>
+</body>
+</html>

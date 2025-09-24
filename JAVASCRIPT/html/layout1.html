@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Layout</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f4f6f9;
+      box-sizing: border-box;
+    }
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 5px;
+      padding: 10px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 10px;
+      min-height: 100px;
+    }
+    .card1 { grid-column: span 1; 
+    background-color: aqua; }
+    .card2 { grid-column: span 1; 
+    background-color: lightcoral; }
+    .card3 { grid-column: span 1; 
+    background-color: blueviolet; }
+    .card4 { grid-column: span 1; 
+    background-color: lightgreen; }
+   
+    .card5 { grid-column: span 3; min-height: 250px; 
+    background-color: lightpink; }
+    .card6 { grid-column: span 1; min-height: 250px; 
+    background-color: lightslategray; }
+
+    .card7 { grid-column: span 1; min-height: 150px; 
+    background-color: brown; }
+    .card8 { grid-column: span 2; min-height: 150px; 
+    background-color: darkgrey; }
+    .card9 { grid-column: span 1; min-height: 150px;
+    background-color: greenyellow; }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard">
+    <div class="card card1">value <h1>1080</h1> </div>
+    <div class="card card2">response time <h1>1090</h1> </div>
+    <div class="card card3">Cycle <h1>11.46k</h1> </div>
+    <div class="card card4">sales <h1>263</h1> </div>
+
+    <div class="card card5">Wide Chart </div>
+    <div class="card card6">List </div>
+
+    <div class="card card7">Pie Chart</div>
+    <div class="card card8">Bubble Chart</div>
+    <div class="card card9">Bar Chart</div>
+  </div>
+
+</body>
+</html>

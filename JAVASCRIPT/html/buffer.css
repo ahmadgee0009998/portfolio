@@ -1,0 +1,560 @@
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background: white;
+      color: black;
+    }
+
+    nav {
+      position:sticky;
+      top:0;
+      background-color: lightgreen;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+    }
+    nav .logo {
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    nav .menu {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    nav .menu a {
+      text-decoration: none;
+      color: black;
+      font-size: 20px;
+    }
+    nav .menu a:hover {
+      color: black;
+      background-color: green;
+    }
+    nav .buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      padding: 8px 15px;
+      border-radius: 20px;
+      border: 1px solid #333;
+      background: transparent;
+      font-size: 14px;
+    }
+    .btn-primary {
+      background: green;
+      border: none;
+      color: white;
+    }
+    .btn-primary:hover {
+      background: green;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px;
+    }
+    .hero h1 {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 18px;
+      color: black;
+      margin-bottom: 25px;
+    }
+    .email-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 450px;
+      margin: 0 375px;
+      border: 2px solid black;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .email-box input {
+      flex: 1;
+      border: none;
+      padding: 15px;
+      font-size: 16px;
+      outline: none;
+    }
+    .email-box button {
+      background: green;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .email-box button:hover {
+      background: green;
+    }
+    
+    .hero small {
+      display: block;
+      margin-top: 15px;
+      font-size: 12px;
+      color: black;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      padding: 35px;
+    }
+
+    .stat-box {
+      background: white;
+      border: 1px solid black;
+      border-radius: 12px;
+      padding: 50px 50px;
+      text-align: center;
+      min-width: 250px;
+      min-height: 50px;
+    }
+
+    .stat-box h2 {
+      font-size: 40px;
+      font-weight: 700;
+      color: black;
+      margin-bottom: 10px;
+    }
+
+    .stat-box p {
+      font-size: 15px;
+      color: black;
+      letter-spacing: 1px;
+    }
+
+     .containeri {
+      margin-top: 10px;
+      background-color: hsl(258deg 57.88% 73.83%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 10%;
+      gap: 50px;
+      border: 2px solid black ;
+      border-radius: 10px;
+    }
+
+    .images img {
+      width: 670px;
+      height: 440px;
+    }
+
+    .images img:hover{
+      padding-top: 5px;
+      transition: 0.5s;
+    }
+
+    .text-content {
+      max-width: 550px;
+    }
+
+    .text-content h4 {
+      color: #7c3aed;
+      font-size: 14px;
+      margin-bottom: 5px;
+      letter-spacing: 1px;
+    }
+
+    .text-content h1 {
+      font-size: 28px;
+      margin: 10px 0;
+      color: #111827;
+    }
+
+    .text-content p {
+      font-size: 15px;
+      color: #374151;
+      line-height: 1.6;
+    }
+
+    .learn-btn {
+      display: inline-block;
+      margin: 20px 0;
+      background: #1f2937;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .features {
+      list-style: none;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .features li {
+      font-size: 14px;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #374151;
+    }
+
+    .container2 {
+      margin-top: 10px;
+      background-color: hsl(7 100% 77%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 10%;
+      gap: 50px;
+      border: 2px solid black ;
+      border-radius: 10px;
+    }
+
+    .images2 img {
+      width: 670px;
+      height: 440px;
+    }
+
+    .images2 img:hover{
+      padding-top: 5px;
+      transition: 0.5s;
+    }
+
+    .text-content2 {
+      max-width: 550px;
+    }
+
+    .text-content2 h4 {
+      color:black;
+      font-size: 14px;
+      margin-bottom: 5px;
+      letter-spacing: 1px;
+    }
+
+    .text-content2 h1 {
+      font-size: 28px;
+      margin: 10px 0;
+      color: #111827;
+    }
+
+    .text-content2 p {
+      font-size: 15px;
+      color: #374151;
+      line-height: 1.6;
+    }
+
+    .learn-btn2 {
+      display: inline-block;
+      margin: 20px 0;
+      background: #1f2937;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .features2 {
+      list-style: none;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .features2 li {
+      font-size: 14px;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #374151;
+    }
+
+    .container3 {
+      margin-top: 10px;
+      display: grid;
+      grid-column: span 2;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .card {
+      border-radius: 20px;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      min-height: 450px;
+    }
+
+    .card h4 {
+      font-size: 14px;
+      letter-spacing: 1px;
+      font-weight: bold;
+      color: #3d4f25;
+      margin-bottom: 10px;
+    }
+
+    .card h2 {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .card p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 25px;
+    }
+
+    .card button {
+      background: #132e2f;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      transition: 0.3s;
+    }
+
+    .collaborate {
+      background: #fbd481;
+    }
+
+    .engage {
+      background: #b2f1b1;
+    }
+    .card img {
+      margin-top: auto;
+      width: 100%;
+    }
+
+    .card img:hover{
+      padding-top: 5px;
+      transition: 0.5s;
+    }
+
+    .container4 {
+      margin-top: 10px;
+      background-color: lightskyblue;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 10%;
+      gap: 50px;
+      border: 2px solid black;
+      border-radius: 10px;
+    }
+
+    .images5 img {
+      width: 670px;
+      height: 440px;
+    }
+
+    .images5 img:hover{
+      padding-top: 5px;
+      transition: 0.5s;
+    }
+
+    .text-content3 {
+      max-width: 550px;
+    }
+
+    .text-content3 h4 {
+      color: #7c3aed;
+      font-size: 14px;
+      margin-bottom: 5px;
+      letter-spacing: 1px;
+    }
+
+    .text-content3 h1 {
+      font-size: 28px;
+      margin: 10px 0;
+      color: #111827;
+    }
+
+    .text-content3 p {
+      font-size: 15px;
+      color: #374151;
+      line-height: 1.6;
+    }
+
+    .learn-btn3 {
+      display: inline-block;
+      margin: 20px 0;
+      background: #1f2937;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .features3 {
+      list-style: none;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .features3 li {
+      font-size: 14px;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #374151;
+    }
+
+    .social-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 50vh;
+      background: lightblue;
+      border: 2px solid black;
+      border-radius: 10px;
+    }
+
+    .social-section h2 {
+      margin-bottom: 35px;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .icons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .icons a {
+      width: 60px;
+      height: 60px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      color: #333;
+      font-size: 26px;
+      transition: all 0.3s;
+      background: #fff;
+    }
+
+    .icons a:hover {
+      border-color: #0073e6;
+      color: #0073e6;
+    }
+
+    .sectionA {
+      border: 2px solid black;
+      border-radius: 10px;
+      background: violet;
+      padding: 20px 20px;
+      text-align: center;
+    }
+
+    .sectionA h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #111;
+    }
+
+    .sectionA p {
+      color: #444;
+      max-width: 600px;
+      margin: 10px auto 30px;
+      line-height: 1.6;
+    }
+
+    .checklistA {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto 40px;
+      max-width: 500px;
+      text-align: left;
+    }
+
+    .checklistA li {
+      margin: 8px 0;
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .cardsA {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .cardA {
+      background-color:white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 220px;
+      text-align: center;
+    }
+
+    .cardA img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-bottom: 12px;
+    }
+
+    .cardA h3 {
+      font-size: 1rem;
+      margin: 5px 0;
+    }
+
+    .cardA p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .tabs {
+      background-color: violet;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tabs button {
+      padding: 10px 18px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      background: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .tabs button:hover {
+      background: #6d28d9;
+      color: white;
+      border-color: #6d28d9;
+    }
+
+    

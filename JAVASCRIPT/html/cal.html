@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Calculator</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    .calculator {
+      background: #222;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    input[type="text"] {
+      width: 100%;
+      height: 60px;
+      margin-bottom: 15px;
+      font-size: 24px;
+      text-align: right;
+      border: none;
+      outline: none;
+      padding: 10px;
+      border-radius: 10px;
+      background: #333;
+      color: #fff;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th {
+      padding: 5px;
+    }
+
+    input[type="button"] {
+      width: 100%;
+      height: 60px;
+      font-size: 20px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      background: #444;
+      color: #fff;
+      transition: 0.2s;
+    }
+
+    input[type="button"]:hover {
+      background: #666;
+    }
+
+    input[type="button"]:active {
+      transform: scale(0.95);
+    }
+
+    /* Special buttons */
+    .equal {
+      background: #4CAF50;
+      color: #fff;
+    }
+
+    .equal:hover {
+      background: #45a049;
+    }
+
+    .clear {
+      background: #e74c3c;
+      color: #fff;
+    }
+
+    .clear:hover {
+      background: #c0392b;
+    }
+
+    .operator {
+      background: #ff9800;
+      color: #fff;
+    }
+
+    .operator:hover {
+      background: #e68900;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="calculator">
+    <input type="text" id="a" readonly>
+    <table>
+      <tr>
+        <th colspan="3"></th>
+        <th><input type="button" value="C" class="clear" onclick="clr()"></th>
+      </tr>
+      <tr>
+        <th><input type="button" value="1" onclick="pick(1)"></th>
+        <th><input type="button" value="2" onclick="pick(2)"></th>
+        <th><input type="button" value="3" onclick="pick(3)"></th>
+        <th><input type="button" value="/" class="operator" onclick="pick('/')"></th>
+      </tr>
+      <tr>
+        <th><input type="button" value="4" onclick="pick(4)"></th>
+        <th><input type="button" value="5" onclick="pick(5)"></th>
+        <th><input type="button" value="6" onclick="pick(6)"></th>
+        <th><input type="button" value="*" class="operator" onclick="pick('*')"></th>
+      </tr>
+      <tr>
+        <th><input type="button" value="7" onclick="pick(7)"></th>
+        <th><input type="button" value="8" onclick="pick(8)"></th>
+        <th><input type="button" value="9" onclick="pick(9)"></th>
+        <th><input type="button" value="-" class="operator" onclick="pick('-')"></th>
+      </tr>
+      <tr>
+        <th><input type="button" value="." onclick="pick('.')"></th>
+        <th><input type="button" value="0" onclick="pick(0)"></th>
+        <th><input type="button" value="=" class="equal" onclick="solve()"></th>
+        <th><input type="button" value="+" class="operator" onclick="pick('+')"></th>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    function pick(val) {
+      document.getElementById("a").value += val;
+    }
+    function solve() {
+      let x = document.getElementById("a").value;
+      try {
+        let y = eval(x); // ⚠️ avoid eval in real apps
+        document.getElementById("a").value = y;
+      } catch {
+        document.getElementById("a").value = "Error";
+      }
+    }
+    function clr() {
+      document.getElementById("a").value = "";
+    }
+  </script>
+</body>
+
+</html>

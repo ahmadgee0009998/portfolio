@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style4.css">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .main{
+            width: 100dvw;
+            height: 100dvh;
+            border: 2px solid black;
+            background-color: lightblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .first{  
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            flex-direction: column;
+            width: 60%;
+            height: 100%;
+            background-color: lightblue;
+        }
+        .second{  
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            flex-direction: column;
+            width: 40%;
+            height: 100%;
+            background-color: lightgreen;
+        } 
+        .inputs{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+            gap: 20px;
+        }
+        input{
+            width: 70%;
+            height: 40px;
+            font-size: 20px;
+            padding: 5px 10px;
+        }
+        button{
+            width: 30%;
+            height: 40px;
+            font-size: 20px;
+            background-color: lightgray;
+            border: none;
+            cursor: pointer;
+        }
+         h1 {
+         color: white;
+         position: absolute;
+         top: 130px;
+        }
+        h2 {
+        color: brown;
+        position: absolute;
+        bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="first"> <h2>lovebirds</h2> <img src="WhatsApp Image 2025-09-02 at 19.04.11_1e074694.jpg" width="100%" height="80%"></div>
+        <div class="second"> 
+            <h1>lovebirds</h1>
+            <div class="inputs">
+                <input type="text" placeholder="Enter Your Name">
+                <input type="password" placeholder="Enter password">
+                <button>Submit</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

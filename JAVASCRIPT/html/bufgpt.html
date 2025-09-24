@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buffer Clone</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background: white;
+      color: black;
+      font-family: Arial, sans-serif;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+    }
+    nav .logo {
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    nav .menu {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    nav .menu a {
+      text-decoration: none;
+      color: black;
+      font-size: 16px;
+      transition: 0.7s;
+    }
+    nav .menu a:hover {
+      color: blue;
+    }
+    nav .buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      padding: 8px 15px;
+      border-radius: 20px;
+      border: 1px solid #333;
+      background: transparent;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+    .btn-primary {
+      background: green;
+      border: none;
+      color: white;
+    }
+    .btn:hover,
+    .btn-primary:hover,
+    .learn-btn:hover,
+    .learn-btn2:hover,
+    .learn-btn3:hover {
+      background: #0073e6;
+      color: #fff;
+      border-color: #0073e6;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .hero h1 {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
+    .email-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 450px;
+      margin: 0 auto;
+      border: 2px solid black;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .email-box input {
+      flex: 1;
+      border: none;
+      padding: 15px;
+      font-size: 16px;
+      outline: none;
+    }
+    .email-box button {
+      background: green;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .hero small {
+      display: block;
+      margin-top: 15px;
+      font-size: 12px;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      padding: 35px;
+      flex-wrap: wrap;
+    }
+
+    .stat-box {
+      background: white;
+      border: 1px solid black;
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      min-width: 220px;
+    }
+
+    .stat-box h2 {
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .containeri,
+    .container2,
+    .container4 {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 10%;
+      gap: 50px;
+      border-radius: 10px;
+      flex-wrap: wrap;
+    }
+    .containeri { background-color: hsl(258deg 57.88% 73.83%); }
+    .container2 { background-color: hsl(7 100% 77%); }
+    .container4 { background-color: lightskyblue; }
+
+    .images img,
+    .images2 img,
+    .images3 img,
+    .images4 img,
+    .images5 img {
+      width: 100%;
+      max-width: 670px;
+      height: auto;
+      transition: 0.5s;
+    }
+    .images img:hover,
+    .images2 img:hover,
+    .images3 img:hover,
+    .images4 img:hover,
+    .images5 img:hover {
+      transform: translateY(-5px);
+    }
+
+    .text-content,
+    .text-content2,
+    .text-content3 {
+      max-width: 550px;
+    }
+
+    .text-content h4,
+    .text-content2 h4,
+    .text-content3 h4 {
+      color: #7c3aed;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .text-content2 h4 { color: hsl(7 100% 97%); }
+
+    .text-content h1,
+    .text-content2 h1,
+    .text-content3 h1 {
+      font-size: 28px;
+      margin: 10px 0;
+      color: #111827;
+    }
+
+    .learn-btn,
+    .learn-btn2,
+    .learn-btn3 {
+      display: inline-block;
+      margin: 20px 0;
+      background: #1f2937;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .features,
+    .features2,
+    .features3 {
+      list-style: none;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .features li,
+    .features2 li,
+    .features3 li {
+      font-size: 14px;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #374151;
+    }
+
+    .features li::before,
+    .features2 li::before,
+    .features3 li::before {
+      content: "✔";
+      color: #7c3aed;
+    }
+
+    .container3 {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .card {
+      border-radius: 20px;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      min-height: 450px;
+    }
+
+    .card h4 {
+      font-size: 14px;
+      letter-spacing: 1px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .card h2 {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .card p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 25px;
+    }
+
+    .card button {
+      background: #132e2f;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      transition: 0.3s;
+    }
+    .card button:hover {
+      background: #0073e6;
+    }
+
+    .collaborate { background: #fbd481; }
+    .engage { background: #b2f1b1; }
+
+    .card img { margin-top: auto; width: 100%; height: auto; }
+
+    .social-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 50vh;
+      background: #f9f9f9;
+      border: 2px solid black;
+      border-radius: 10px;
+      padding: 40px 20px;
+    }
+
+    .social-section h2 {
+      margin-bottom: 35px;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .icons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .icons a {
+      width: 60px;
+      height: 60px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      color: #333;
+      font-size: 26px;
+      transition: all 0.3s ease;
+      background: #fff;
+    }
+
+    .icons a:hover {
+      border-color: #0073e6;
+      color: #0073e6;
+      transform: scale(1.1);
+    }
+
+    .sectionA {
+      background: violet;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .sectionA h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .sectionA p {
+      max-width: 600px;
+      margin: 10px auto 30px;
+      line-height: 1.6;
+    }
+
+    .checklistA {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto 40px;
+      max-width: 500px;
+      text-align: left;
+    }
+
+    .checklistA li {
+      margin: 8px 0;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .cardsA {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .cardA {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 220px;
+      text-align: center;
+    }
+
+    .cardA img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-bottom: 12px;
+    }
+
+    .tabs {
+      background-color: violet;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .tabs button {
+      padding: 10px 18px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      background: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .tabs button:hover {
+      background: #6d28d9;
+      color: white;
+      border-color: #6d28d9;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .containeri,
+      .container2,
+      .container4 {
+        flex-direction: column;
+      }
+      .container3 {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 { font-size: 32px; }
+      .stat-box h2 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">
+      <!-- Buffer Logo SVG -->
+      <svg width="132" height="36" viewBox="0 0 132 36" aria-hidden="true"><path d="M1 9.34 15.17 2l14.322 7.34-14.322 7.366L1 9.34Z"></path></svg>
+    </div>
+    <div class="menu">
+      <a href="#">Features</a>
+      <a href="#">Channels</a>
+      <a href="#">Resources</a>
+      <a href="#">Pricing</a>
+    </div>
+    <div class="buttons">
+      <button class="btn">Log in</button>
+      <button class="btn btn-primary">Get started now</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Your social media workspace</h1>
+    <p>Share consistently without the chaos</p>
+    <div class="email-box">
+      <input type="email" placeholder="Enter your email...">
+      <button>Get started now →</button>
+    </div>
+    <small>By entering your email, you agree to receive emails from Buffer.</small>
+  </section>
+
+  <section class="stats">
+    <div class="stat-box">
+      <h2>189,643</h2>
+      <p>ACTIVE USERS</p>
+    </div>
+    <div class="stat-box">
+      <h2>7,858,881</h2>
+      <p>POSTS PUBLISHED LAST MONTH</p>
+    </div>
+    <div class="stat-box">
+      <h2>11</h2>
+      <p>SOCIAL PLATFORMS SUPPORTED</p>
+    </div>
+  </section>
+
+  <div class="containeri">
+    <div class="images"><img src="publish-large.webp" alt="Publishing dashboard preview"></div>
+    <div class="text-content">
+      <h4>PUBLISH</h4>
+      <h1>The most complete set of publishing integrations, ever</h1>
+      <p>Schedule your content to the most popular platforms including Facebook, Instagram, TikTok, LinkedIn, Threads, Bluesky, YouTube Shorts, Pinterest, Google Business, Mastodon and X.</p>
+      <a href="#" class="learn-btn">Learn more →</a>
+      <ul class="features">
+        <li>Auto-publish your content or get a notification when it’s time to post</li>
+        <li>Magically customize and repurpose your post for each platform</li>
+        <li>See everything you have scheduled in a calendar or queue view</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container2">
+    <div class="text-content2">
+      <h4>Create</h4>
+      <h1>Turn any idea into the perfect post</h1>
+      <p>Whether you’re flying solo or working with a team, Buffer has all the features to help you create, organize, and repurpose your content for any channel. There’s also an AI Assistant if you need it.</p>
+      <a href="#" class="learn-btn2">Learn more →</a>
+      <ul class="features2">
+        <li>Import content from Canva, Dropbox, Google and more</li>
+        <li>Visually organize your ideas into groups or themes</li>
+        <li>Add a beautiful link in bio page to your profiles</li>
+      </ul>
+    </div>
+    <div class="images2"><img src="https://buffer.com/_next/image?url=%2Fstatic%2Fimages%2Fhomepage%2Fcreate-large.webp&w=750&q=75" alt="Create content illustration"></div>
+  </div>
+
+  <div class="container3">
+    <div class="card collaborate">
+      <h4>COLLABORATE</h4>
+      <h2>Great content, created together</h2>
+      <p>Collaborate seamlessly with your team. Invite unlimited collaborators, assign roles and permissions, and keep everyone aligned with saved drafts and notes.</p>
+      <button>Learn more →</button>
+      <div class="images3"><img src="https://buffer.com/_next/image?url=%2Fstatic%2Fimages%2Fhomepage%2Fcollaborate-large.webp&w=750&q=75" alt="Collaboration preview"></div>
+    </div>
+
+    <div class="card engage">
+      <h4>ENGAGE</h4>
+      <h2>Reply to comments in a flash</h2>
+      <p>Engage with your audience on Facebook and Instagram at 10x speed. Buffer will help you triage and respond to comments from one simple dashboard.</p>
+      <button>Learn more →</button>
+      <div class="images4"><img src="https://buffer.com/_next/image?url=%2Fstatic%2Fimages%2Fhomepage%2Fengage-large.webp&w=750&q=75" alt="Engage preview"></div>
+    </div>
+  </div>
+
+  <div class="container4">
+    <div class="text-content3">
+      <h4>Analyze</h4>
+      <h1>Answers, not just analytics</h1>
+      <p>Whether it’s basic analytics or in-depth reporting, Buffer will help you learn what works and how to improve</p>
+      <a href="#" class="learn-btn3">Learn more →</a>
+      <ul class="features3">
+        <li>See the best times, formats, and frequencies to post</li>
+        <li>Get demographic data about your audience</li>
+        <li>Tag and recycle your best-performing content</li>
+      </ul>
+    </div>
+    <div class="images5"><img src="https://buffer.com/_next/image?url=%2Fstatic%2Fimages%2Fhomepage%2Fanalyze-large.webp&w=750&q=75" alt="Analytics preview"></div>
+  </div>
+
+  <div class="social-section">
+    <h2>Connect your favorite accounts</h2>
+    <div class="icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-pinterest"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </div>
+
+  <section class="sectionA">
+    <h1>Learn more about growing your social media following</h1>
+    <p>Buffer is your complete social media toolkit, built for creators, brands, and businesses of all sizes. We provide insights, tools, and strategies to help you thrive online.</p>
+    <ul class="checklistA">
+      <li>Step-by-step guides for each social platform</li>
+      <li>Case studies from brands and creators</li>
+      <li>Free resources and templates</li>
+    </ul>
+    <div class="cardsA">
+      <div class="cardA">
+        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="John Doe">
+        <h3>John Doe</h3>
+        <p>Social Media Marketer</p>
+      </div>
+      <div class="cardA">
+        <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Jane Smith">
+        <h3>Jane Smith</h3>
+        <p>Content Strategist</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="tabs">
+    <button>Guides</button>
+    <button>Case Studies</button>
+    <button>Resources</button>
+  </div>
+
+</body>
+</html>

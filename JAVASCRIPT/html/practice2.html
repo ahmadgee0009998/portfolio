@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style> 
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* grid-template-rows: repeat(3, 1fr); */
+            grid-gap: 10px;
+            padding: 10px;
+        }
+        .card {
+    background: white;
+      border-radius: 10px;
+      padding: 10px;
+      min-height: 100px;
+        }
+        .card1 {
+            grid-column: span 1;
+            background-color: brown;
+        }
+        .card2 {
+            grid-column: span 2;
+            background-color: blue;
+        }
+        .card3 {
+            grid-column: span 1;
+            background-color: lime;
+            min-height: 250px;
+        }
+        .card4 {
+            grid-column:  span 1;
+            background-color: lightgreen;
+            min-height: 250px;
+        }
+        .card5 {
+            grid-column: span 1 ;
+            background-color: lightcyan;
+            min-height: 250px;
+        }
+        .card6 {
+            grid-column: span 1;
+            background-color: lightseagreen;
+        }
+        .card7 {
+            grid-column: span 2;
+            background-color: lightpink;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+
+    <div class="card card1">a <h1>one</h1> </div>
+    <div class="card card2">b <h1>three</h1> </div>
+
+    <div class="card card3">c <h1>two</h1> </div>
+    <div class="card card4">d <h1>four</h1> </div>
+    <div class="card card5">e <h1>five</h1> </div>
+
+    <div class="card card6">f <h1></h1> </div>
+    <div class="card card7">g <h1></h1> </div>
+
+    </div>
+</body>
+</html>
