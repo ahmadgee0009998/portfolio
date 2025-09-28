@@ -1,0 +1,110 @@
+/* General */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #222;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: background 0.5s, color 0.5s;
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+}
+
+/* Screen transitions */
+.screen {
+  position: absolute;
+  width: 100%;
+  max-width: 600px;
+  opacity: 0;
+  transform: translateY(40px);
+  pointer-events: none;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.screen.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Buttons */
+.btn {
+  margin: 10px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #ff4081;
+  color: #fff;
+  transition: background 0.3s;
+}
+.btn:hover { background: #e91e63; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Timer */
+.progress {
+  margin: 20px auto;
+  width: 80%;
+  height: 20px;
+  background: #444;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.progress-bar {
+  height: 100%;
+  width: 100%;
+  background: #76ff03;
+  transition: width 0.2s linear;
+}
+.progress-text {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+}
+
+/* Question & Answers */
+.question {
+  font-size: 1.2rem;
+  margin: 20px 0;
+}
+.answer-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.answer {
+  padding: 10px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.answer:hover { transform: scale(1.03); }
+.answer.selected { background: #03a9f4; }
+.answer.correct { background: #4caf50; }
+.answer.wrong { background: #f44336; }
+
+/* Dark/Light theme */
+body.light {
+  background: #f4f4f4;
+  color: #222;
+}
+body.light .btn {
+  background: #2196f3;
+}
+body.light .btn:hover {
+  background: #1976d2;
+}
